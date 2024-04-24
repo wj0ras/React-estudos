@@ -1,6 +1,8 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom"
 
+import { InputLogin } from "./components/InputLogin";
+
 export const Login = () => {
     const inputPasswordRef = useRef<HTMLInputElement>(null);
 
@@ -26,22 +28,21 @@ export const Login = () => {
             <form>
                 <p>Quantidade de caracteres no email: {emailLength}</p>
 
-                <label>
-                    <span>Email</span>
-                    <input type="email" 
-                           value={email} 
-                           onChange={e => setEmail(e.target.value)}
-                           onKeyDown={e => e.key === 'Enter' ? inputPasswordRef.current?.focus() : undefined}
-                           />
-                </label>
+                <InputLogin 
+                    label="Email"
+                    type="email"
+                    value={email}
 
-                <label>
-                    <span>Password</span>
-                    <input type="password" 
-                           value={password}
-                           ref={inputPasswordRef}
-                           onChange={e => setPassword(e.target.value)}/>
-                </label>
+                    onChange={newValue => setEmail(newValue)}
+                    onPressEnter={() => {inputPasswordRef.current?.focus()}}
+                />
+                <InputLogin 
+                    label="Password"
+                    type="password"
+                    value={password}
+
+                    onChange={newValue => setPassword(newValue)}
+                />
 
                 <button type="button" onClick={handleEnter}>
                     Enter
