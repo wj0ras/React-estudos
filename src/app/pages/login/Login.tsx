@@ -2,6 +2,7 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom"
 
 import { InputLogin } from "./components/InputLogin";
+import { ButtonLogin } from "./components/ButtonLogin";
 
 export const Login = () => {
     const inputPasswordRef = useRef<HTMLInputElement>(null);
@@ -19,8 +20,7 @@ export const Login = () => {
     }
 
     const handleEnter = useCallback(() =>{
-        console.log(email)
-        console.log(password)
+        alert(email+password)
     }, [email, password]);
 
     return(
@@ -40,13 +40,18 @@ export const Login = () => {
                     label="Password"
                     type="password"
                     value={password}
-
+                    ref={inputPasswordRef}
                     onChange={newValue => setPassword(newValue)}
                 />
 
-                <button type="button" onClick={handleEnter}>
-                    Enter
-                </button>
+
+                <ButtonLogin type="button" onClick={handleEnter}>
+                    Login
+                </ButtonLogin>
+                <ButtonLogin type="button" onClick={handleEnter}>
+                    Login
+                </ButtonLogin>
+                
             </form>
 
             <button onClick={handleClick}>Dashboard</button>
